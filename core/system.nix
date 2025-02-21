@@ -1,11 +1,9 @@
-{
-  nixpkgs,
-  inputs,
-}:
+{ nixpkgs, inputs }:
 
 {
   name,
   system,
+  stateVersion,
   user,
   isWsl ? false,
 }:
@@ -24,13 +22,14 @@ nixpkgs.lib.nixosSystem rec {
   modules = [
     (if isWsl then inputs.nixos-wsl.nixosModules.wsl else { })
 
-    machineConfig
+    (import machineConfig { stateVersion = stateVersion; })
     userOsConfig
     home-manager
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.users.${user} = import userHomeManagerConfig {
+        stateVersion = stateVersion;
         isWsl = isWsl;
         inputs = inputs;
       };
@@ -40,6 +39,7 @@ nixpkgs.lib.nixosSystem rec {
     {
       config._module.args = {
         currentSystem = system;
+        currentStateVersion = stateVersion;
         currentSystemName = name;
         currentSystemUser = user;
         isWsl = isWsl;

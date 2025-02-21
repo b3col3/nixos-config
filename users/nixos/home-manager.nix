@@ -1,4 +1,9 @@
-{ isWsl, inputs, ... }:
+{
+  stateVersion,
+  isWsl,
+  inputs,
+  ...
+}:
 
 {
   config,
@@ -9,7 +14,7 @@
 
 {
   home = {
-    stateVersion = "24.05";
+    stateVersion = stateVersion;
 
     username = "nixos";
     homeDirectory = "/home/nixos";
@@ -78,8 +83,8 @@
 
     git = {
       enable = true;
-      userName = "";
-      userEmail = "";
+      # userName = "";
+      # userEmail = "";
 
       extraConfig = {
         credential.helper = "store";

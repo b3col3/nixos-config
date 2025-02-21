@@ -1,3 +1,5 @@
+{ stateVersion, ... }:
+
 { pkgs, currentSystemUser, ... }:
 
 {
@@ -36,6 +38,6 @@
   };
 
   system = {
-    stateVersion = "24.05";
+    stateVersion = stateVersion;
   };
 }

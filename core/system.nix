@@ -5,6 +5,7 @@
   system,
   stateVersion,
   user,
+  desktop ? "none",
   isWsl ? false,
 }:
 
@@ -22,14 +23,28 @@ nixpkgs.lib.nixosSystem rec {
   modules = [
     (if isWsl then inputs.nixos-wsl.nixosModules.wsl else { })
 
+    (
+      if desktop == "cosmic" then
+        {
+          nix.settings = {
+            substituters = [ "https://cosmic.cachix.org/" ];
+            trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+          };
+          inputs.nixos-cosmic.nixosModules.default
+        }
+      else
+        { }
+    )
+
     (import machineConfig { stateVersion = stateVersion; })
-    userOsConfig
+    (import userOsConfig { user = user; })
     home-manager
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.users.${user} = import userHomeManagerConfig {
         stateVersion = stateVersion;
+        user = user;
         isWsl = isWsl;
         inputs = inputs;
       };

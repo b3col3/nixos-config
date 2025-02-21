@@ -1,17 +1,15 @@
+{ user, ... }:
+
 { pkgs, lib, ... }:
 
 {
   programs = {
     fish = {
       enable = true;
-
-      # interactiveShellInit = ''
-      #   set fish_greeting # Disable greeting
-      # '';
     };
   };
 
-  users.users.nixos = {
+  users.users.${user} = {
     isNormalUser = true;
     # home = "/home/nixos";
     extraGroups = [

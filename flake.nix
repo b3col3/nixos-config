@@ -19,6 +19,11 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixos-cosmic/nixpkgs";
+    };
   };
 
   outputs =
@@ -26,6 +31,7 @@
       self,
       nixpkgs,
       home-manager,
+      nixos-cosmic,
       ...
     }@inputs:
     let
@@ -38,6 +44,15 @@
         stateVersion = "24.11";
         user = "nixos";
         isWsl = true;
+      };
+
+      nixosConfigurations.dell-inspirion = system {
+        name = "dell-inspirion";
+        system = "x86_64-linux";
+        stateVersion = "24.11";
+        user = "b3col3";
+        desktop = "cosmic";
+        isWsl = false;
       };
     };
 }

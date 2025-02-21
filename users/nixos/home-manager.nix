@@ -1,5 +1,6 @@
 {
   stateVersion,
+  user,
   isWsl,
   inputs,
   ...
@@ -16,8 +17,8 @@
   home = {
     stateVersion = stateVersion;
 
-    username = "nixos";
-    homeDirectory = "/home/nixos";
+    username = user;
+    homeDirectory = "/home/${user}";
 
     packages = with pkgs; [
       gh

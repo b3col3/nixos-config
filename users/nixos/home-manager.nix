@@ -15,6 +15,7 @@
     homeDirectory = "/home/nixos";
 
     packages = with pkgs; [
+      gh
       go
       nixfmt-rfc-style
     ];

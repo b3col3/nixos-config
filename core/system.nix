@@ -23,20 +23,19 @@ nixpkgs.lib.nixosSystem rec {
   inherit system;
 
   modules = [
+    # Wsl
     (if isWsl then inputs.nixos-wsl.nixosModules.wsl else { })
 
-    (
-      if desktop == "cosmic" then
-        (import cosmic-desktop-config {
-          inputs = inputs;
-        })
-      else
-        { }
-    )
+    # Environnement de bureau "Cosmic Desktop"
+    (if desktop == "cosmic" then (import cosmic-desktop-config { inputs = inputs; }) else { })
 
+    # Machine/host
     machine-config
+
+    # Utilisateur
     (import user-os-config { user = user; })
 
+    # Home manager
     home-manager
     {
       home-manager.useGlobalPkgs = true;

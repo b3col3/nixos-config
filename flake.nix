@@ -22,7 +22,7 @@
 
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixos-cosmic/nixpkgs";
+      inputs.nixpkgs-unstable.follows = "nixos-cosmic/nixpkgs";
     };
   };
 

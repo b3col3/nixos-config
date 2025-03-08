@@ -15,6 +15,7 @@ let
   user-home-manager-config = ../users/${user}/home-manager.nix;
 
   cosmic-desktop-config = ../modules/cosmic-desktop.nix;
+  hyprland-config = ../modules/hyprland.nix;
 
   home-manager = inputs.home-manager.nixosModules.home-manager;
 
@@ -28,6 +29,14 @@ nixpkgs.lib.nixosSystem rec {
 
     # Environnement de bureau "Cosmic Desktop"
     (if desktop == "cosmic" then (import cosmic-desktop-config { inputs = inputs; }) else { })
+
+    # Environnement de bureau "Nyprland"
+    (
+      if desktop == "hyprland" then
+        (import hyprland-config { specialArgs = { inherit inputs; }; })
+      else
+        { }
+    )
 
     # Machine/host
     machine-config

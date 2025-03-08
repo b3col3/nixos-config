@@ -51,7 +51,7 @@
         system = "x86_64-linux";
         stateVersion = "24.11";
         user = "b3col3";
-        desktop = "cosmic";
+        desktop = "hyprland";
         isWsl = false;
       };
     };

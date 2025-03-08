@@ -1,7 +1,11 @@
 {
+  inputs,
+  ...
+}:
+
+{
   config,
   pkgs,
-  inputs,
   ...
 }:
 

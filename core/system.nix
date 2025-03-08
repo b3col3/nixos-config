@@ -31,12 +31,7 @@ nixpkgs.lib.nixosSystem rec {
     (if desktop == "cosmic" then (import cosmic-desktop-config { inputs = inputs; }) else { })
 
     # Environnement de bureau "Nyprland"
-    (
-      if desktop == "hyprland" then
-        (import hyprland-config { specialArgs = { inherit inputs; }; })
-      else
-        { }
-    )
+    (if desktop == "hyprland" then (import hyprland-config { inputs = inputs; }) else { })
 
     # Machine/host
     machine-config

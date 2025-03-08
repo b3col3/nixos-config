@@ -24,6 +24,10 @@
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs-unstable.follows = "nixos-cosmic/nixpkgs";
     };
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
   };
 
   outputs =
@@ -31,7 +35,6 @@
       self,
       nixpkgs,
       home-manager,
-      nixos-cosmic,
       ...
     }@inputs:
     let

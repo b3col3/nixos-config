@@ -1,6 +1,9 @@
-# Ignore build outputs from performing a nix-build or `nix build` command
+# Ignore les sorties de build résultant de l'exécution d'une commande `nix-build` ou `nix build`
 result
 result-*
 
-# Ignore automatically generated direnv output
+# Ignore la sortie direnv générée automatiquement
 .direnv
+
+# Ignore le fichier configuration
+env.json

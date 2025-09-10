@@ -1,3 +1,5 @@
+{ lib, pkgs, ...}:
+
 {
   programs = {
     zed-editor = {
@@ -25,9 +27,9 @@
         lsp = {
           rust-analyzer = {
             binary = {
-              #  path = lib.getExe pkgs.rust-analyzer;
-              path_lookup = true;
-              };
+              path = lib.getExe pkgs.rust-analyzer;
+              # path_lookup = true;
+            };
           };
           nix = {
             binary = {
@@ -35,9 +37,24 @@
             };
           };
         };
+
+        telemetry = {
+          metrics = false;
+        };
       };
 
-
+      userKeymaps = [
+        {
+          context = "Workspace";
+          bindings = {};
+        }
+        {
+          context = "Editor";
+          bindings = {
+            "ctrl-:" = [ "editor::ToggleComments" { "advance_downwards" = false; } ];
+          };
+        }
+      ];
     };
   };
 }

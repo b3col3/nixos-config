@@ -9,13 +9,18 @@
 
   environment = {
     systemPackages = with pkgs; [
-      discord
+      # dev
+      devbox
       nil
       nixd
       nixfmt-rfc-style
+      rustup
+      zed-editor
+
+      # utilitaire
+      discord
       qbittorrent
       vlc
-      zed-editor
     ];
   };
 }

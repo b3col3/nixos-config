@@ -4,6 +4,3 @@ result-*
 
 # Ignore la sortie direnv générée automatiquement
 .direnv
-
-# Ignore le fichier configuration
-env.json

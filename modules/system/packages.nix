@@ -11,6 +11,7 @@
     systemPackages = with pkgs; [
       # dev
       devbox
+      gcc
       nil
       nixd
       nixfmt-rfc-style
